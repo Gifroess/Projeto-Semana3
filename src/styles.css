@@ -28,7 +28,7 @@ h1 {
     padding: 25px;
 }
 
-input {
+#tarefa {
     display: block;
     width: 80%;
     margin: 10px auto;
@@ -45,6 +45,13 @@ input {
     border: 2px solid gray;
     background-color: white;
 
+}
+#prazo{
+    margin-top: 15px;
+    width: 20%;
+    border-radius: 10px;
+    border: 2px solid gray;
+    background-color: white;
 }
 .acao {
     width: 10%;
@@ -75,7 +82,8 @@ select{
 ul{
     list-style: none;
     font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: smaller;
 
     padding: 0;
     margin-top: 20px;
@@ -111,19 +119,26 @@ li span{
 
 }
 
-.alta{
-    color: #c62828;
+ .alta{
+    background-color: #c44444;
+    border-color: #c62828 ;
 }
 
 .media{
-    color: #ef6c00;
+    background-color: #e68333;
+    border-color: #ef6c00 ;
 }
 
 .baixa{
-    color: #2e7d32;
-}
+    background-color: #467a49;
+    border-color: #2e7d32;
+}  
 
 .concluido{
-    color: gray;
+    background-color: gray;
+    border-color: gray;
 }
 
+.atrasada{
+    font-weight: bold;
+}

@@ -1,6 +1,7 @@
 "use strict";
 let listElement = document.querySelector("#app ul");
 let inputElement = document.querySelector("#app input");
+let prazoElement = document.querySelector("#prazo");
 let buttonElement = document.querySelector("#app button");
 let prioridadeElement = document.querySelector("#prioridade");
 let estatisticasElement = document.querySelector("#estatisticas");
@@ -35,16 +36,20 @@ function listarTarefas() {
         let todoElement = document.createElement("li");
         let tarefaText = document.createElement("span");
         let icone = "";
-        if (item.prioridade === "Alta") {
-            icone = "🔴";
+        let hoje = new Date().toISOString().split("T")[0];
+        let prazoTarefa = new Date(item.prazo).toISOString().split("T")[0];
+        // if (item.prioridade === "Alta") {
+        //     icone = "🔴";
+        // } else if (item.prioridade === "Média") {
+        //     icone = "🟡";
+        // } else {
+        //     icone = "🟢";
+        // }
+        if (prazoTarefa < hoje && !item.concluido) {
+            icone = "⚠️";
+            tarefaText.classList.add("atrasada");
         }
-        else if (item.prioridade === "Média") {
-            icone = "🟡";
-        }
-        else {
-            icone = "🟢";
-        }
-        tarefaText.innerText = `${icone} ${item.texto}`;
+        tarefaText.innerText = `${icone} ${item.texto} - ${item.prazo}`;
         let linkElement = document.createElement("a");
         linkElement.setAttribute("href", "#");
         let posicao = tarefas.indexOf(item);
@@ -63,17 +68,17 @@ function listarTarefas() {
         };
         if (item.concluido) {
             icone = "✅";
-            tarefaText.classList.add("concluido");
-            tarefaText.innerText = `${icone} ${item.texto}`;
+            todoElement.classList.add("concluido");
+            tarefaText.innerText = `${icone} ${item.texto} - ${item.prazo}`;
         }
         if (item.prioridade === "Alta") {
-            tarefaText.classList.add("alta");
+            todoElement.classList.add("alta");
         }
         else if (item.prioridade === "Média") {
-            tarefaText.classList.add("media");
+            todoElement.classList.add("media");
         }
         else {
-            tarefaText.classList.add("baixa");
+            todoElement.classList.add("baixa");
         }
         todoElement.appendChild(tarefaText);
         todoElement.appendChild(linkElement);
@@ -92,11 +97,16 @@ function adicionarTarefa() {
         alert("Selecione uma prioridade!");
         return false;
     }
+    if (prazoElement.value === "") {
+        alert("Selecione um prazo a sua tarefa!");
+        return false;
+    }
     let tarefaDigitada = inputElement.value;
     tarefas.push({
         texto: tarefaDigitada,
         prioridade: prioridadeElement.value,
-        concluido: false
+        concluido: false,
+        prazo: prazoElement.value,
     });
     inputElement.value = "";
     listarTarefas();
