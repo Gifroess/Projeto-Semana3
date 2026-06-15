@@ -3,9 +3,13 @@ let inputElement = document.querySelector("#app input") as HTMLInputElement;
 let buttonElement = document.querySelector("#app button") as HTMLElement;
 let prioridadeElement = document.querySelector("#prioridade") as HTMLSelectElement;
 let estatisticasElement = document.querySelector("#estatisticas") as HTMLParagraphElement;
+let btnTodas = document.querySelector('#todas') as HTMLElement;
+let btnPendente = document.querySelector('#pendentes') as HTMLElement;
+let btnConcluida = document.querySelector('#concluidas') as HTMLElement;
 
 let listaSalva: (string | null) = localStorage.getItem("@listagem_tarefas");
 let tarefas: Tarefa[] = listaSalva !== null && JSON.parse(listaSalva) || [];
+let filtroAtual = "todas";
 
 interface Tarefa {
     texto: string;
@@ -29,13 +33,38 @@ function listarTarefas() {
 
     listElement.innerHTML = "";
 
-    tarefas.map(item => {
+    let tarefasFiltradas = tarefas;
+
+
+    if(filtroAtual === "pendentes"){
+
+        tarefasFiltradas = tarefas.filter(item => !item.concluido);
+
+    } else if(filtroAtual === "concluidas"){
+
+        tarefasFiltradas = tarefas.filter(item => item.concluido);
+
+    }
+
+    if(tarefasFiltradas.length === 0){
+
+        let mensagem = document.createElement("li");
+        mensagem.innerText = `Não há tarefas aqui.`;
+
+        listElement.appendChild(mensagem);
+
+        return;
+    }
+    tarefasFiltradas.map(item => {
 
         let todoElement = document.createElement("li");
 
         let tarefaText = document.createElement("span");
 
         let icone = "";
+
+
+
 
         if (item.prioridade === "Alta") {
             icone = "🔴";
@@ -80,7 +109,9 @@ function listarTarefas() {
         };
 
         if (item.concluido) {
+            icone = "✅";
             tarefaText.classList.add("concluido");
+            tarefaText.innerText = `${icone} ${item.texto}`;
         }
 
         if (item.prioridade === "Alta") {
@@ -131,6 +162,21 @@ function adicionarTarefa() {
 }
 
 buttonElement.onclick = adicionarTarefa;
+
+btnTodas.onclick = () => {
+    filtroAtual = "todas";
+    listarTarefas();
+}
+
+btnPendente.onclick = () => {
+    filtroAtual = "pendentes";
+    listarTarefas();
+}
+
+btnConcluida.onclick = () => {
+    filtroAtual = "concluidas";
+    listarTarefas();
+}
 
 function deletarTarefa(posicao: number) {
 

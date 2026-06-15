@@ -59,11 +59,6 @@ input {
     color: black;
 }
 
-.concluido{
-    text-decoration: line-through;
-    color: gray;
-}
-
 
 label{
     font-family: 'Montserrat', sans-serif;
@@ -107,6 +102,15 @@ li span{
     width: 250px;
 }
 
+.filtro{
+    margin-top: 15px;
+    width: 20%;
+    border-radius: 10px;
+    border: 2px solid gray;
+    background-color: white;
+
+}
+
 .alta{
     color: #c62828;
 }
@@ -118,3 +122,8 @@ li span{
 .baixa{
     color: #2e7d32;
 }
+
+.concluido{
+    color: gray;
+}
+
