@@ -80,14 +80,6 @@ function listarTarefas() {
 
         let prazoTarefa = new Date(item.prazo).toISOString().split("T")[0];
 
-        // if (item.prioridade === "Alta") {
-        //     icone = "🔴";
-        // } else if (item.prioridade === "Média") {
-        //     icone = "🟡";
-        // } else {
-        //     icone = "🟢";
-        // }
-
         if(prazoTarefa < hoje && !item.concluido){
             icone = "⚠️"
             tarefaText.classList.add("atrasada");

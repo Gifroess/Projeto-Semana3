@@ -216,7 +216,6 @@ li span{
 }  
 
 .concluido{
-    /* background-color: rgb(211, 209, 209); */
     background-color: #d3cc71;
     border-color: gray;
 }
@@ -278,9 +277,3 @@ li span{
     background-color: gray;
     box-shadow: 0 5px 10px -5px #080808 ;
 }
-
-/* .dark button,
-.dark a {
-    background-color: #3d3d3d;
-    border-color: #666;
-} */
