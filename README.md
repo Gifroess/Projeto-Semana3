@@ -19,6 +19,7 @@ O objetivo desta atividade foi aprender os conceitos fundamentais de TypeScript 
 - Identificação de tarefas atrasadas;
 - Marcação de tarefas concluídas;
 - Estatísticas de tarefas concluídas;
+- Modo claro e modo escuro;
 - Filtro de visualização por:
   - Todas as tarefas;
   - Tarefas pendentes;
