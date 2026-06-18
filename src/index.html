@@ -15,26 +15,28 @@
 <body>
   
   <h1>Minhas Tarefas</h1>
-  
-  <div id="app">
 
-    <p id="estatisticas"></p>
+  <div id="app">
+    <div class="tema-container" ><button id="tema" >🌙</button></div>
+  
+    <p style="margin-top: 0;" id="estatisticas"></p>
     <input type="text" placeholder="Digite uma tarefa..." id="tarefa" />
-    <select id="prioridade" aria-label="Prioridade">
+    <select class="entrada" id="prioridade" aria-label="Prioridade">
         <option value="" disabled selected hidden>Prioridade.</option>
         <option value="Baixa">Baixa</option>
         <option value="Média">Média</option>
         <option value="Alta">Alta</option>
     </select>
-    <input type="date" placeholder="Prazo" id="prazo"/>
-    <button id="Adicionar">Adicionar</button>
+    <input class="entrada" type="date" placeholder="Prazo" id="prazo"/>
+    <button id="Adicionar"> Adicionar </button>
 
     <ul> </ul>
 
-    <button class="filtro" id="todas">Todas</button>
-    <button class="filtro" id="pendentes">Pendentes</button>
-    <button class="filtro" id="concluidas">Concluídas</button>
-
+    <div class="divBotao">
+    <button class="botao" id="todas">Todas</button>
+    <button class="botao" id="pendentes">Pendentes</button>
+    <button class="botao" id="concluidas">Concluídas</button>
+    </div>
 
   </div>
 

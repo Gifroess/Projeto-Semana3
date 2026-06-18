@@ -1,6 +1,7 @@
 body {
-    background-color: #DDCECD;
+    background-color: #f0edcb;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
 }
 
 h1 {
@@ -15,17 +16,41 @@ h1 {
     letter-spacing: 1px;
 }
 
+.tema-container{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 0;
+}
+
+#tema {
+    width: auto;
+    height: 30px;
+    border-radius: 100%;
+    border-style: none;
+    /* border: 2px solid gray; */
+    background-color: #d3cc71;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 7px -5px #181818 ;
+
+}
+#tema:hover {
+  transform: scale(1.05);
+}
+
 #app {
-    border: 2px solid black;
+    border: 2px solid #b9b79e9d;
     /* width: 400px;
     padding: 20px; */
-    border-radius: 15px;
+    border-radius: 10px;
     margin: auto;
     text-align: center;
+    background-color: #ebe595;
 
     width: 500px;
     max-width: 90%;
     padding: 25px;
+    box-shadow: 0 5px 10px -5px #2d2d2d ;
+
 }
 
 #tarefa {
@@ -34,25 +59,60 @@ h1 {
     margin: 10px auto;
     padding: 10px;
     background-color: white;
-    border: 2px solid gray;
+    border: none;
     border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 10px -5px #2d2d2d ;
+    font-family: 'Montserrat', sans-serif;
+}
+#tarefa:hover {
+  transform: scale(1.05);
+} 
+
+#divBotao{
+    padding-inline: 0;
+    padding-block: 0;
+
+}
+
+.botao {
+    margin-top: 15px;
+    width: 28%;
+    height: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color:#ebe595;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* box-shadow: 0 5px 10px -5px #2d2d2d ; */
+    font-family: 'Montserrat', sans-serif;
+    padding-block: 0;
+    padding-inline: 0;
+}
+.botao:hover {
+  transform: scale(1.05);
+
 }
 
 #Adicionar {
     margin-top: 15px;
     width: 20%;
+    height: auto;
     border-radius: 10px;
-    border: 2px solid gray;
+    border: none;
     background-color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 10px -5px #2d2d2d ;
+    font-family: 'Montserrat', sans-serif;
+}
+#Adicionar:hover {
+  transform: scale(1.05);
+}
 
+
+#estatisticas{
+    margin-top: 0;
 }
-#prazo{
-    margin-top: 15px;
-    width: 20%;
-    border-radius: 10px;
-    border: 2px solid gray;
-    background-color: white;
-}
+
 .acao {
     width: 10%;
     border: 1px solid gray;
@@ -71,14 +131,24 @@ label{
     font-family: 'Montserrat', sans-serif;
 }
 
-select{
-    margin-top: 15px;
-    width: 20%;
-    border-radius: 10px;
-    border: 2px solid gray;
-    background-color: white;
 
+.entrada{
+    margin-top: 15px;
+    width: 28%;
+    border-radius: 10px;
+    border: none;
+    margin: 10px;
+    background-color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 5px 10px -5px #2d2d2d ;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1%;
 }
+.entrada:hover {
+  transform: scale(1.05);
+}
+
+
 ul{
     list-style: none;
     font-family: 'Montserrat', sans-serif;
@@ -94,8 +164,8 @@ ul{
 
 li {
     border-radius: 1px;
-    border-color: #918888;
-    border-style: solid;
+    /* border-color: #918888;
+    border-style: solid; */
 
     display: flex;
     gap: 8px;
@@ -104,10 +174,17 @@ li {
 
     padding: 10px;
     border-radius: 8px;
+    box-shadow: 0 5px 10px -5px #2d2d2d ;
+
 }
+
 
 li span{
     width: 250px;
+}
+
+.data{
+    font-weight: lighter;
 }
 
 .filtro{
@@ -116,10 +193,14 @@ li span{
     border-radius: 10px;
     border: 2px solid gray;
     background-color: white;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 
 }
+.filtro:hover {
+  transform: scale(1.05);
+}
 
- .alta{
+.alta{
     background-color: #c44444;
     border-color: #c62828 ;
 }
@@ -135,10 +216,71 @@ li span{
 }  
 
 .concluido{
-    background-color: gray;
+    /* background-color: rgb(211, 209, 209); */
+    background-color: #d3cc71;
     border-color: gray;
 }
 
 .atrasada{
     font-weight: bold;
 }
+
+.selecionado{
+    background-color: white ;
+    box-shadow: 0 5px 10px -5px #2d2d2d ;
+}
+
+.dark {
+    background-color: #1e1e1e;
+    color: rgb(219, 219, 219);
+}
+.dark h1{
+    color: white;
+}
+
+.dark #app {
+    background-color: #2d2d2d;
+    border-color: #6e6e6e13;
+    box-shadow: 0 5px 10px -5px #646464 ;
+}
+
+.dark input,
+.dark select {
+    background-color: #3d3d3d;
+    border-color: #666;
+    box-shadow: 0 5px 10px -5px #080808 ;
+}
+
+.dark .botao{
+    background-color: #2d2d2d;
+    color: white;
+}
+.dark #Adicionar{
+    background-color: #a7a7a7;
+    box-shadow: 0 5px 10px -5px #080808 ;
+}
+.dark #tarefa{
+    background-color: #a7a7a7;
+    box-shadow: 0 5px 10px -5px #080808 ;    
+}
+
+.dark .entrada{
+    background-color: #a7a7a7; 
+    box-shadow: 0 5px 10px -5px #080808 ;
+}
+.dark .concluido{
+    background-color: gray;
+}
+.dark #tema{
+    background-color: gray;
+}
+.dark .selecionado{
+    background-color: gray;
+    box-shadow: 0 5px 10px -5px #080808 ;
+}
+
+/* .dark button,
+.dark a {
+    background-color: #3d3d3d;
+    border-color: #666;
+} */

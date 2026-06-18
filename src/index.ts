@@ -1,16 +1,26 @@
 let listElement = document.querySelector("#app ul") as HTMLUListElement;
-let inputElement = document.querySelector("#app input") as HTMLInputElement;
+let inputElement = document.querySelector("#app #tarefa") as HTMLInputElement;
 let prazoElement = document.querySelector("#prazo") as HTMLInputElement;
-let buttonElement = document.querySelector("#app button") as HTMLElement;
+let buttonElement = document.querySelector("#app #Adicionar") as HTMLElement;
 let prioridadeElement = document.querySelector("#prioridade") as HTMLSelectElement;
 let estatisticasElement = document.querySelector("#estatisticas") as HTMLParagraphElement;
 let btnTodas = document.querySelector('#todas') as HTMLElement;
 let btnPendente = document.querySelector('#pendentes') as HTMLElement;
 let btnConcluida = document.querySelector('#concluidas') as HTMLElement;
+let temaBtn = document.querySelector("#tema") as HTMLButtonElement;
 
 let listaSalva: (string | null) = localStorage.getItem("@listagem_tarefas");
 let tarefas: Tarefa[] = listaSalva !== null && JSON.parse(listaSalva) || [];
 let filtroAtual = "todas";
+let temaSalvo = localStorage.getItem("tema");
+
+
+if(temaSalvo === "dark"){
+
+    document.body.classList.add("dark");
+
+    temaBtn.innerText = "☀️";
+}
 
 interface Tarefa {
     texto: string;
@@ -28,7 +38,7 @@ function atualizarEstatisticas() {
 
     let porcentagem = total > 0? Math.round((concluidas / total) * 100): 0;
 
-    estatisticasElement.innerText =`${concluidas} de ${total} tarefas concluídas (${porcentagem}%)`;
+    estatisticasElement.innerText =`${concluidas} de ${total} tarefas concluídas`;
 }
 
 function listarTarefas() {
@@ -62,6 +72,7 @@ function listarTarefas() {
         let todoElement = document.createElement("li");
 
         let tarefaText = document.createElement("span");
+        let tarefaPrazo = document.createElement("span");
 
         let icone = "";
 
@@ -82,7 +93,8 @@ function listarTarefas() {
             tarefaText.classList.add("atrasada");
         }
 
-        tarefaText.innerText = `${icone} ${item.texto} - ${item.prazo}`;
+        tarefaText.innerText = `${icone} ${item.texto}`;
+        tarefaPrazo.innerText = `${item.prazo}`;
 
         let linkElement = document.createElement("a");
         linkElement.setAttribute("href", "#");
@@ -119,7 +131,8 @@ function listarTarefas() {
         if (item.concluido) {
             icone = "✅";
             todoElement.classList.add("concluido");
-            tarefaText.innerText = `${icone} ${item.texto} - ${item.prazo}`;
+            tarefaText.innerText = `${icone} ${item.texto}`;
+            tarefaPrazo.innerText = `${item.prazo}`;
         }
 
         if (item.prioridade === "Alta") {
@@ -130,7 +143,10 @@ function listarTarefas() {
             todoElement.classList.add("baixa");
         }
 
+        tarefaPrazo.classList.add("data")
+
         todoElement.appendChild(tarefaText);
+        todoElement.appendChild(tarefaPrazo); 
         todoElement.appendChild(linkElement);
         todoElement.appendChild(concluirBtn);
 
@@ -179,17 +195,44 @@ buttonElement.onclick = adicionarTarefa;
 
 btnTodas.onclick = () => {
     filtroAtual = "todas";
+
+    btnPendente.classList.remove("selecionado");
+    btnConcluida.classList.remove("selecionado");
+    btnTodas.classList.add("selecionado");
+
     listarTarefas();
 }
 
 btnPendente.onclick = () => {
     filtroAtual = "pendentes";
+
+    btnTodas.classList.remove("selecionado");
+    btnConcluida.classList.remove("selecionado"); 
+    btnPendente.classList.add("selecionado");
+
     listarTarefas();
 }
 
 btnConcluida.onclick = () => {
     filtroAtual = "concluidas";
+
+    btnTodas.classList.remove("selecionado");
+    btnPendente.classList.remove("selecionado"); 
+    btnConcluida.classList.add("selecionado");
+
     listarTarefas();
+}
+
+temaBtn.onclick = () => {
+    document.body.classList.toggle("dark");
+
+    if(document.body.classList.contains("dark")){
+        temaBtn.innerText = "☀️";
+        localStorage.setItem("tema", "dark");
+    } else {
+        temaBtn.innerText = "🌙";
+        localStorage.setItem("tema", "light");
+    }
 }
 
 function deletarTarefa(posicao: number) {
